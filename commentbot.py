@@ -81,11 +81,16 @@ class TwitterBot:
         self.driver = webdriver.Chrome()
         self.driver.get("https://twitter.com/login")
         time.sleep(random.randrange(2, 5))
-        self.driver.find_element_by_xpath("/html/body/div/div/div/div[2]/main/div/div/form/div/div[1]/label/div/div[2]/div/input")\
+        self.driver.find_element_by_css_selector("input")\
             .send_keys(usrname)
-        self.driver.find_element_by_xpath("/html/body/div/div/div/div[2]/main/div/div/form/div/div[2]/label/div/div[2]/div/input")\
+        # click the next btn
+        self.driver.find_element_by_xpath("//*[@id='layers']/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/div[6]")\
+            .click()
+        # submit pswd
+        time.sleep(2)
+        self.driver.find_element_by_xpath("//*[@id='layers']/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/label/div/div[2]/div[1]/input")\
             .send_keys(pw)
-        self.driver.find_element_by_xpath('/html/body/div/div/div/div[2]/main/div/div/form/div/div[3]/div')\
+        self.driver.find_element_by_xpath('//*[@id="layers"]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div[2]/div/div[1]/div/div/div')\
             .click()
         time.sleep(4)
     
@@ -93,26 +98,27 @@ class TwitterBot:
         self.driver.find_element_by_xpath("/html/body/div/div/div/div[2]/header/div/div/div/div[1]/div[2]/nav/a[2]")\
             .click()
         time.sleep(random.randrange(2, 5))
-        self.driver.find_element_by_xpath("/html/body/div/div/div/div[2]/main/div/div/div/div/div/div[1]/div[1]/div/div/div/div/div[1]/div[2]/div/div/div/form/div[1]/div/div/div[2]/input")\
+        # self.driver.get(f"https://twitter.com/{profile}")
+        self.driver.find_element_by_xpath("//*[@id='react-root']/div/div/div[2]/main/div/div/div/div[1]/div/div[1]/div[1]/div/div/div/div/div[1]/div[2]/div/div/div/form/div[1]/div/div/label/div[2]/div/input")\
             .send_keys("@" + profile)
-        self.driver.find_element_by_xpath("/html/body/div/div/div/div[2]/main/div/div/div/div/div/div[1]/div[1]/div/div/div/div/div[1]/div[2]/div/div/div/form/div[1]/div/div/div[2]/input")\
+        self.driver.find_element_by_xpath("//*[@id='react-root']/div/div/div[2]/main/div/div/div/div[1]/div/div[1]/div[1]/div/div/div/div/div[1]/div[2]/div/div/div/form/div[1]/div/div/label/div[2]/div/input")\
             .send_keys(Keys.ENTER)
         time.sleep(random.randrange(2, 5))
-        self.driver.find_element_by_xpath("/html/body/div/div/div/div[2]/main/div/div/div/div/div/div[1]/div[2]/nav/div[2]/div[3]/a")\
+        self.driver.find_element_by_css_selector(f"a[href = '/{profile}'")\
+            .click()
+        time.sleep(random.randrange(4, 6))
+
+        self.driver.find_element_by_css_selector("div[data-testid = 'tweetText'] span")\
             .click()
         time.sleep(random.randrange(2, 5))
-        self.driver.find_element_by_xpath("/html/body/div/div/div/div[2]/main/div/div/div/div/div/div[2]/div/div/section/div/div/div/div[1]/div/div/div/div[2]/div[1]/div[1]/a/div/div[1]/div[1]/span/span")\
-            .click()
+        self.driver.find_element_by_css_selector("div.DraftEditor-editorContainer div").send_keys(message)
         time.sleep(random.randrange(2, 5))
-        self.driver.find_element_by_xpath("/html/body/div/div/div/div[2]/main/div/div/div/div/div/div[2]/div/div/div[2]/section/div/div/div/div[3]/div/div/div/div/article/div/div[2]/div[2]/div[2]/div[3]/div[1]/div/div/div[2]/span")\
-            .click()
-        time.sleep(random.randrange(2, 5))
-        self.driver.find_element_by_class_name("notranslate").click()
-        time.sleep(random.randrange(2, 5))
-        self.driver.find_element_by_class_name("notranslate").send_keys(message)
-        time.sleep(random.randrange(2, 5))
-        self.driver.find_element_by_xpath("//div[@data-testid='tweetButton']")\
-            .click()
+        try:
+            self.driver.find_element_by_css_selector("div[data-testid = 'tweetButtonInline'")\
+                .click()
+        except: 
+            self.driver.find_element_by_css_selector("div[data-testid = 'tweetButton'")\
+                .click()
         time.sleep(random.randrange(2, 5))
 
 
@@ -171,7 +177,7 @@ class YoutubeBot:
 # ig_bot = InstaBot(user, pw)
 # ig_bot.leave_comment('yale')
 tw_bot = TwitterBot(user, pw)
-tw_bot.reply("theh3podcast", "I am testing")
+tw_bot.reply("hasanthehun", "I am testing")
 #yt_bot = YoutubeBot(user, pw)
 #yt_bot.leave_comment("ye", "test")
  
