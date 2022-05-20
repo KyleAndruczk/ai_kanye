@@ -7,6 +7,7 @@ import random
 import time
 import math
 
+from secrets import user, pw
 
 class InstaBot:
     
@@ -167,10 +168,10 @@ class YoutubeBot:
         
 
 
-ig_bot = InstaBot('aikanye_west', 'Iamagod01')
-ig_bot.leave_comment('yale')
-#tw_bot = TwitterBot('AIKanye_West', 'Iamagod01')
-#tw_bot.reply("theh3podcast", "I am testing")
-#yt_bot = YoutubeBot("commentbotkanye@gmail.com", "Iamagod01")
-#yt_bot.leave_comment("pewdiepie", "test")
+# ig_bot = InstaBot(user, pw)
+# ig_bot.leave_comment('yale')
+tw_bot = TwitterBot(user, pw)
+tw_bot.reply("theh3podcast", "I am testing")
+#yt_bot = YoutubeBot(user, pw)
+#yt_bot.leave_comment("ye", "test")
  
