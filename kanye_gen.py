@@ -4,7 +4,7 @@ import numpy as np
 import os
 import time
 import re
-import pronouncing
+# import pronouncing
 import random
 
 #read then decode the kanye text 
